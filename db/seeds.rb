@@ -4,4 +4,14 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first
+
+Vocab.create({word:'Erklärung',definition:'Example'})
+Vocab.create({word:'Abendessen',definition:'Dinner'})
+Vocab.create({word:'Abfahrt',definition:'Departure'})
+Vocab.create({word:'Abgeschlossen',definition:'Closed'})
+Vocab.create({word:'Absagen',definition:'Cancel'})
+Vocab.create({word:'Allgemein',definition:'General'})
+Vocab.create({word:'An morgen',definition:'In the morning'})
+Vocab.create({word:'Anrufen',definition:'To call'})
+Vocab.create({word:'Auberginen',definition:'Eggplants'})
