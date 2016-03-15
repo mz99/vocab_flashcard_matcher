@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160315203807) do
   create_table "vocabs", force: :cascade do |t|
     t.string   "word"
     t.string   "definition"
+    t.boolean  "failed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
