@@ -1,0 +1,21 @@
+<h1>Listing Words</h1>
+<%= link_to 'New word', new_vocab_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+
+  <% @vocabs.each do |vocab| %>
+    <tr>
+      <td><%= vocab.word %></td>
+      <td><%= vocab.definition %></td>
+      <td><%= link_to 'Show', vocab_path(vocab) %></td>
+      <td><%= link_to 'Edit', edit_vocab_path(vocab) %></td>
+      <td><%= link_to 'Destroy', vocab_path(vocab),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

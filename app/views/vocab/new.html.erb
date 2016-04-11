@@ -1,0 +1,17 @@
+<h1>Add new German word here</h1>
+
+<%= form_for :vocab, url: vocab_index_path do |f| %>
+  <p>
+    <%= f.label "Word" %> <br>
+    <%= f.text_field :word %>
+  </p>
+  <p>
+    <%= f.label "Definition" %> <br>
+    <%= f.text_field :definition %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
