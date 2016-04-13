@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #dont use Vocab, use vocab
-   resources :vocab
    root 'vocab#index'
+   resources :vocab
+   get 'quiz' => 'vocab#quiz'
+
 
 
   # Example of regular route:

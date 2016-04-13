@@ -6,7 +6,6 @@ class VocabController < ApplicationController
 
   def show
     @vocab = Vocab.find(params[:id])
-
   end
 
   def new
@@ -41,6 +40,10 @@ class VocabController < ApplicationController
     @vocab = Vocab.find(params[:id])
     @vocab.destroy
     redirect_to vocab_index_path
+  end
+
+  def quiz
+    @vocabs = Vocab.all
   end
 
   private

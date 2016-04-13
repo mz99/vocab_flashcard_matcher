@@ -1,0 +1,13 @@
+<h1>Take the quiz</h1>
+
+<% four = @vocabs.order('RANDOM()').limit(4) %>
+<%= four.first.definition %> <br>
+<%= four.second.definition %> <br>
+<%= four.third.definition %> <br>
+<%= four.last.definition %>
+
+<%= form_tag("/search", method: "get") do %>
+  <%= radio_button_tag(:answer, "#{four.first.id}") %>
+
+  <%= submit_tag("Search") %>
+<% end %>
