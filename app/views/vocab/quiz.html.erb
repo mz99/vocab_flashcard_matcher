@@ -1,13 +1,16 @@
 <h1>Take the quiz</h1>
 
-<% four = @vocabs.order('RANDOM()').limit(4) %>
-<%= four.first.definition %> <br>
-<%= four.second.definition %> <br>
-<%= four.third.definition %> <br>
-<%= four.last.definition %>
+<% four = @vocabs.limit(4).shuffle %>
 
+
+<h2>The word is: <%= four.first.word %> <br> </h2>
+
+<% new = four.shuffle %>
 <%= form_tag("/search", method: "get") do %>
-  <%= radio_button_tag(:answer, "#{four.first.id}") %>
+  <%= radio_button_tag(:answer, "#{new.first.id}")%><%= new.first.definition %><br>
+  <%= radio_button_tag(:answer, "#{new.second.id}")%><%= new.second.definition %><br>
+  <%= radio_button_tag(:answer, "#{new.third.id}")%><%= new.third.definition %><br>
+  <%= radio_button_tag(:answer, "#{new.fourth.id}")%><%= new.fourth.definition %> <br>
 
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Submit") %>
 <% end %>

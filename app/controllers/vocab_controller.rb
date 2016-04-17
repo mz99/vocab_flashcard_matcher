@@ -46,6 +46,10 @@ class VocabController < ApplicationController
     @vocabs = Vocab.all
   end
 
+  def quiz_answer
+    
+  end
+
   private
     def vocab_params
       params.require(:vocab).permit(:word, :definition)
