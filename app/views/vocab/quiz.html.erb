@@ -1,16 +1,15 @@
-<h1>Take the quiz</h1>
+<% four = @vocabs.all.shuffle %>
+<% four1 = four.take(4) %>
 
-<% four = @vocabs.limit(4).shuffle %>
 
+<h2>The word is: <%= four1.first.word %> <br> </h2>
 
-<h2>The word is: <%= four.first.word %> <br> </h2>
-
-<% new = four.shuffle %>
-<%= form_tag("search", method: "get") do %>
+<% new = four1.shuffle %>
+<%= form_tag("answer", method: "get") do %>
   <%= radio_button_tag(:answer, "#{new.first.id}")%><%= new.first.definition %><br>
   <%= radio_button_tag(:answer, "#{new.second.id}")%><%= new.second.definition %><br>
   <%= radio_button_tag(:answer, "#{new.third.id}")%><%= new.third.definition %><br>
   <%= radio_button_tag(:answer, "#{new.fourth.id}")%><%= new.fourth.definition %> <br>
-
+  <%= hidden_field_tag :orig,  "#{four1.first.id}" %>
   <%= submit_tag("Submit") %>
 <% end %>

@@ -46,12 +46,15 @@ class VocabController < ApplicationController
     @vocabs = Vocab.all
   end
 
-  def search
-    if params[:answer] = "1"
-      render :text => 'You answered 1'
+  def answer
+    if params[:answer] == params[:orig]
+      render 'answer'
     else
-      render :text => 'You selected something other than 1'
+      render 'wrong'
     end
+  end
+
+  def wrong
   end
 
   private

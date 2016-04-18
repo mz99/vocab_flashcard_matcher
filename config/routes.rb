@@ -7,7 +7,8 @@ Rails.application.routes.draw do
    root 'vocab#index'
    resources :vocab
    get 'quiz' => 'vocab#quiz'
-   get 'search' => 'vocab#search'
+   get 'answer' => 'vocab#answer'
+   get 'wrong' => 'vocab#wrong'
 
 
 
