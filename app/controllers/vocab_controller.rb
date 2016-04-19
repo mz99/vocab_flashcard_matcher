@@ -48,13 +48,12 @@ class VocabController < ApplicationController
 
   def answer
     if params[:answer] == params[:orig]
-      render 'answer'
+      flash[:notice] = "You got it right!"
+      redirect_to quiz_path
     else
-      render 'wrong'
+      flash[:notice] = "Sorry, wrong answer!"
+      redirect_to quiz_path
     end
-  end
-
-  def wrong
   end
 
   private

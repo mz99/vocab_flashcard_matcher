@@ -1,7 +1,6 @@
 <% four = @vocabs.all.shuffle %>
 <% four1 = four.take(4) %>
 
-
 <h2>The word is: <%= four1.first.word %> <br> </h2>
 
 <% new = four1.shuffle %>
@@ -13,3 +12,5 @@
   <%= hidden_field_tag :orig,  "#{four1.first.id}" %>
   <%= submit_tag("Submit") %>
 <% end %>
+<br >
+<%= link_to 'Back to Index', {:action => 'index'} %>
