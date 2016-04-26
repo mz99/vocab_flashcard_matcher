@@ -6,6 +6,7 @@ class VocabController < ApplicationController
 
   def show
     @vocab = Vocab.find(params[:id])
+
   end
 
   def new
@@ -44,10 +45,12 @@ class VocabController < ApplicationController
 
   def quiz
     @vocabs = Vocab.all
+    @score = session[:score]
   end
 
   def answer
     if params[:answer] == params[:orig]
+      session[:score] = params[:answer]
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
@@ -55,6 +58,7 @@ class VocabController < ApplicationController
       redirect_to quiz_path
     end
   end
+
 
   private
     def vocab_params
