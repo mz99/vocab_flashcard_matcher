@@ -54,7 +54,7 @@ class VocabController < ApplicationController
       redirect_to quiz_path
     else
       flash[:notice] = "Sorry, wrong answer!"
-      redirect_to quiz_path
+      redirect_to quiz_path 
     end
   end
 
