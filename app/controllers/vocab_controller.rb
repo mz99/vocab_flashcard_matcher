@@ -6,6 +6,7 @@ class VocabController < ApplicationController
 
   def show
     @vocab = Vocab.find(params[:id])
+
   end
 
   def new
@@ -28,7 +29,6 @@ class VocabController < ApplicationController
 
   def update
     @vocab = Vocab.find(params[:id])
-
     if @vocab.update(vocab_params)
       redirect_to @vocab
     else
@@ -43,18 +43,21 @@ class VocabController < ApplicationController
   end
 
   def quiz
-    @vocabs = Vocab.all
+    @all = Vocab.all.shuffle
+    @score = session[:score]
   end
 
   def answer
     if params[:answer] == params[:orig]
+      @score << params[:orig]
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
       flash[:notice] = "Sorry, wrong answer!"
-      redirect_to quiz_path
+      redirect_to quiz_path 
     end
   end
+
 
   private
     def vocab_params
