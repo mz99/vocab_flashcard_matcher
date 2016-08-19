@@ -49,12 +49,12 @@ class VocabController < ApplicationController
 
   def answer
     if params[:answer] == params[:orig]
-      @score << params[:orig]
+      #@score << params[:orig]
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
       flash[:notice] = "Sorry, wrong answer!"
-      redirect_to quiz_path 
+      redirect_to quiz_path
     end
   end
 
