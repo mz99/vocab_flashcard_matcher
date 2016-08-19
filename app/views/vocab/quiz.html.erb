@@ -1,8 +1,9 @@
-<% four = @vocabs.all.shuffle %>
+<% #four = @vocabs.all.shuffle %>
+<% four = @all.shuffle %>
 <% four1 = four.take(4) %>
 
 <h2>The word is: <%= four1.first.word %> <br> </h2>
-<h2>Your score is <%=  @score.length %> </h2>
+<h2>Your score is <%=  @score %> </h2>
 
 <% questions = four1.shuffle %>
 <%= form_tag("answer", method: "get") do %>
