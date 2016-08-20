@@ -6,8 +6,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # Load Bootstrap CSS template
 gem 'bootstrap-sass', '3.2.0.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use postgres as the database for Active Record
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -49,6 +49,5 @@ group :development do
 end
 
 group :productin do
-  gem 'pg', '0.15.1'
   gem 'rails_12factor'
 end
