@@ -49,7 +49,7 @@ class VocabController < ApplicationController
 
   def answer
     if params[:answer] == params[:orig]
-      #@score << params[:orig]
+      #@score << params[:orig] Add score tracking functionality later
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
