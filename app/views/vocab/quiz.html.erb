@@ -1,17 +1,21 @@
-<% four = @all.shuffle %>
-<% four1 = four.take(4) %>
-
-<h2>The word is: <%= four1.first.word %> <br> </h2>
+<h2>The word is: <%= @question %> <br> </h2>
 <h2>Your score is <%= session["score"] %> </h2>
 
-<% questions = four1.shuffle %>
+
+<% questions = @four.shuffle %>
 <%= form_tag("answer", method: "get") do %>
   <%= radio_button_tag(:answer, "#{questions.first.id}")%><%= questions.first.definition %><br>
   <%= radio_button_tag(:answer, "#{questions.second.id}")%><%= questions.second.definition %><br>
   <%= radio_button_tag(:answer, "#{questions.third.id}")%><%= questions.third.definition %><br>
   <%= radio_button_tag(:answer, "#{questions.fourth.id}")%><%= questions.fourth.definition %> <br>
-  <%= hidden_field_tag :orig,  "#{four1.first.id}" %>
+  <%= hidden_field_tag :orig,  "#{@four.first.id}" %>
   <%= submit_tag("Submit") %>
 <% end %>
 <br >
 <%= link_to 'Back to Index', {:action => 'index'} %> <br>
+
+
+
+<p>
+  <%=session[:already_asked]%>
+</p>

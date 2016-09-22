@@ -44,15 +44,23 @@ class VocabController < ApplicationController
   end
 
   def quiz
-    @all = Vocab.all.shuffle
     #Initiate score session
     session[:score] ||= 0
+    #Initiate session to hold questions already asked
+    session[:already_asked] ||= []
+    #Pick new word and make sure it wasn't asked before. Old code -> @all = Vocab.all.shuffle
+    @four = Vocab.all.shuffle.take(4)
+    if session[:already_asked].exclude?(@four.first.id)
+      @question = @four.first.word
+    end
+
   end
 
   def answer
-    #Keep score here
+    #Keep score and question id's already asked
     if params[:answer] == params[:orig]
       session[:score] += 1
+      session[:already_asked] << params[:answer].to_i
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
