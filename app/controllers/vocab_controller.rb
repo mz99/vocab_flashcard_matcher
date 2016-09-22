@@ -2,6 +2,7 @@ class VocabController < ApplicationController
 
   def index
     @vocabs = Vocab.all.order("word")
+    session[:score] = nil
   end
 
   def show
@@ -44,12 +45,14 @@ class VocabController < ApplicationController
 
   def quiz
     @all = Vocab.all.shuffle
-    @score = session[:score]
+    #Initiate score session
+    session[:score] ||= 0
   end
 
   def answer
+    #Keep score here
     if params[:answer] == params[:orig]
-      #@score << params[:orig] Add score tracking functionality later
+      session[:score] += 1
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
