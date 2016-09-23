@@ -66,7 +66,7 @@ class VocabController < ApplicationController
 
     #Create question variable if there are enough words left in list
     if @left_words.length >= 4
-      @question = @four.shuffle.first.word
+      @question = @four.first.word
     else
       redirect_to result_path
     end
