@@ -13,13 +13,3 @@
 <% end %>
 <br >
 <%= link_to 'Back to Index', {:action => 'index'} %> <br>
-
-
-
-<p>
-  The following is sessions[:already_asked] array: <%=session[:already_asked]%>
-</p>
-
-<p>
-  The following are available words: <%= @left_words.pluck(:word) %>
-</p>

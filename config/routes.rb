@@ -8,6 +8,7 @@ Rails.application.routes.draw do
    resources :vocab
    get 'quiz' => 'vocab#quiz'
    get 'answer' => 'vocab#answer'
+   get 'result' => 'vocab#result'
 
 
 

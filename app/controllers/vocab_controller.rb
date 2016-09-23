@@ -61,7 +61,7 @@ class VocabController < ApplicationController
     if @left_words.length >= 4
       @question = @four.first.word
     else
-      redirect_to vocab_index_path
+      redirect_to result_path
     end
 
   end
@@ -74,9 +74,13 @@ class VocabController < ApplicationController
       flash[:notice] = "You got it right!"
       redirect_to quiz_path
     else
+      session[:already_asked] << params[:orig].to_i
       flash[:notice] = "Sorry, wrong answer!"
       redirect_to quiz_path
     end
+  end
+
+  def result
   end
 
 
