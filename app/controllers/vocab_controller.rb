@@ -51,8 +51,15 @@ class VocabController < ApplicationController
     #Initiate session to hold questions already asked
     session[:already_asked] ||= []
 
+    #Total score
+    session[:amount_questions] = Vocab.all.length
+
+
     #Get list of words that hasn't been asked before
     @left_words = Vocab.all.where.not(id: session[:already_asked])
+
+    #Questions remaining
+    @questions_remaining = @left_words.length - 4
 
     #Pick four words from leftover words list
     @four = @left_words.shuffle.take(4)
@@ -81,7 +88,6 @@ class VocabController < ApplicationController
   end
 
   def result
-    @total_score = Vocab.all.length
   end
 
 
