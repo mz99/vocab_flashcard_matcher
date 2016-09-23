@@ -3,6 +3,7 @@ class VocabController < ApplicationController
   def index
     @vocabs = Vocab.all.order("word")
     session[:score] = nil
+    session[:already_asked] = nil
   end
 
   def show
@@ -46,12 +47,21 @@ class VocabController < ApplicationController
   def quiz
     #Initiate score session
     session[:score] ||= 0
+
     #Initiate session to hold questions already asked
     session[:already_asked] ||= []
-    #Pick new word and make sure it wasn't asked before. Old code -> @all = Vocab.all.shuffle
-    @four = Vocab.all.shuffle.take(4)
-    if session[:already_asked].exclude?(@four.first.id)
+
+    #Get list of words that hasn't been asked before
+    @left_words = Vocab.all.where.not(id: session[:already_asked])
+
+    #Pick four words from leftover words list
+    @four = @left_words.shuffle.take(4)
+
+    #Create question variable if there are enough words left in list
+    if @left_words.length >= 4
       @question = @four.first.word
+    else
+      redirect_to vocab_index_path
     end
 
   end

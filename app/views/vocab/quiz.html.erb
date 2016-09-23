@@ -2,12 +2,12 @@
 <h2>Your score is <%= session["score"] %> </h2>
 
 
-<% questions = @four.shuffle %>
+
 <%= form_tag("answer", method: "get") do %>
-  <%= radio_button_tag(:answer, "#{questions.first.id}")%><%= questions.first.definition %><br>
-  <%= radio_button_tag(:answer, "#{questions.second.id}")%><%= questions.second.definition %><br>
-  <%= radio_button_tag(:answer, "#{questions.third.id}")%><%= questions.third.definition %><br>
-  <%= radio_button_tag(:answer, "#{questions.fourth.id}")%><%= questions.fourth.definition %> <br>
+  <%= radio_button_tag(:answer, "#{@four.first.id}")%><%= @four.first.definition %><br>
+  <%= radio_button_tag(:answer, "#{@four.second.id}")%><%= @four.second.definition %><br>
+  <%= radio_button_tag(:answer, "#{@four.third.id}")%><%= @four.third.definition %><br>
+  <%= radio_button_tag(:answer, "#{@four.fourth.id}")%><%= @four.fourth.definition %> <br>
   <%= hidden_field_tag :orig,  "#{@four.first.id}" %>
   <%= submit_tag("Submit") %>
 <% end %>
@@ -17,5 +17,9 @@
 
 
 <p>
-  <%=session[:already_asked]%>
+  The following is sessions[:already_asked] array: <%=session[:already_asked]%>
+</p>
+
+<p>
+  The following are available words: <%= @left_words.pluck(:word) %>
 </p>
