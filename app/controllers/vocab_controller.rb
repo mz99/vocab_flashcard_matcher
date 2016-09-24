@@ -21,7 +21,6 @@ class VocabController < ApplicationController
 
   def create
     @vocab = Vocab.new(vocab_params)
-
     if @vocab.save
       redirect_to @vocab #redirect to show page for that word since the id is inside
     else
@@ -48,13 +47,10 @@ class VocabController < ApplicationController
   def quiz
     #Initiate score session
     session[:score] ||= 0
-
     #Initiate session to hold questions already asked
     session[:already_asked] ||= []
-
     #Total score
     session[:amount_questions] = Vocab.all.length
-
 
     #Get list of words that hasn't been asked before
     @left_words = Vocab.all.where.not(id: session[:already_asked])
@@ -71,7 +67,6 @@ class VocabController < ApplicationController
     else
       redirect_to result_path
     end
-
   end
 
   def answer
