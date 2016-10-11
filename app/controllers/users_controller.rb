@@ -3,14 +3,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def previous_scores
+  end
+
   def new
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)    # Not the final implementation!
+    @user = User.new(user_params)
      if @user.save
-       flash[:success] = "Welcome to the Sample App!"
+       flash[:success] = "Welcome to the Vocab Flashcard Matcher!"
        redirect_to @user
     else
       render 'new'

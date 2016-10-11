@@ -24,7 +24,7 @@ class VocabController < ApplicationController
     if @vocab.save
       redirect_to @vocab #redirect to show page for that word since the id is inside
     else
-      flash[:notice] = "Word or definition can't be blank!"
+      flash.now[:notice] = "Word or definition can't be blank!"
       render 'new'
     end
   end
