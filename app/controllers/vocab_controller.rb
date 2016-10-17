@@ -8,7 +8,6 @@ class VocabController < ApplicationController
 
   def show
     @vocab = Vocab.find(params[:id])
-
   end
 
   def new
