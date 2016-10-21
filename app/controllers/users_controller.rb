@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def scores
     @user  = User.find(params[:id])
-    @score = Score.find(params[:id])
   end
 
   def new

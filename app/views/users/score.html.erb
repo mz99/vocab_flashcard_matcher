@@ -1,7 +1,7 @@
 <h1><%= @user.name %> </h1>
 <h2>Your previous scores have been: </h2>
 <ul>
-  <% @scores do |s| %>
+  <% @scores.each do |s| %>
   <li><%= s.score %>, on <%= @scores.created_at %></li>
   <% end %>
 </ul>
