@@ -70,7 +70,7 @@ class VocabController < ApplicationController
     #save score to user database if all questions done and logged in
     if @questions_remaining == 0
       high_score = Score.new
-      high_score.user_id = @current_user
+      high_score.user_id = session[:user_id]
       high_score.score = session[:score]
       high_score.save
       redirect_to vocab_index_path
