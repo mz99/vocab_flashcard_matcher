@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  #below is a callback to engage the current_user object
+  before_action :set_user, only: [:show, :scores, :edit, :update, :destroy]
+
   def show
-    @user = User.find(params[:id])
   end
 
   def scores
-    @user  = User.find(params[:id])
+    @scores = Score.find(params[:id])
   end
 
   def new
@@ -12,11 +14,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to @user
     else
@@ -36,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to vocab_index_path
   end
@@ -45,6 +44,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name,:email, :password,:password_confirmation)
+  end
+
+  def set_user
+    @user = current_user
   end
 
 

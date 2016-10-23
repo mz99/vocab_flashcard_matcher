@@ -6,19 +6,26 @@ Rails.application.routes.draw do
    root 'vocab#index'
 
    resources :vocab
-   get 'quiz' => 'vocab#quiz'
-   get 'answer' => 'vocab#answer'
-   get 'result' => 'vocab#result'
+   get 'quiz', to: 'vocab#quiz'
+   get 'answer', to: 'vocab#answer'
+   get 'result', to: 'vocab#result'
 
-   resources :users
-   get '/signup' => 'users#new'
-   post '/signup'=> 'users#create'
-   post '/scores' => 'users#scores'
-   get '/scores' => 'users#scores'
+   resources :users do
+     #collection is when there is no user involved
+     collection do
+       get "signup", to: "users#new"
+       post "signup", to: 'users#create' #or can also change to just post "create" and omit , to: xxx if name is same as controller action
+     end
+     member do
+       #member is when there are users involved
+       post '/scores', to: 'users#scores'
+       get '/scores', to: 'users#scores'
+     end
+   end
 
-   get '/login' => 'sessions#new'
-   post '/login' => 'sessions#create'
-   delete '/logout' => 'sessions#destroy'
+   get '/login', to: 'sessions#new'
+   post '/login', to: 'sessions#create'
+   delete '/logout', to: 'sessions#destroy'
    get 'sessions/new'
 
 

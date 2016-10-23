@@ -1,0 +1,28 @@
+#landing page
+/
+
+# vocab resources
+/vocab/new     #create new word
+/vocab/quiz    #initiate the quiz
+/vocab/show    #show the details of a word
+/vocab/delete  #delete a word
+/vocab/answer  #determines if the answer submitted is correct
+
+
+# user resources
+/users  # list all users
+/users/:id #show one specific use
+/users/:id/score #see all previous quiz scores
+/users/:id/edit  #edit user information
+delete  /users/:id  #
+/users/:id/logout
+
+# sessions resources
+/sessions/new        #create a new session (login)
+/sessions/destroy    #destroy the current session (logout)
+
+# Difference between edit and update is the edit action displays view for the edit page,
+# while the update action is when you send a post request.
+# new -> create (new brings you to the view, create does the actual changing)
+# edit -> update (edit brings you to the view, update does the actual changing)
+# For CRUD, only use GET, POST, PUT, and DELETE. Patch/HEAD/CONNECT/OPTIONS should be ignored and thought of as POST.
