@@ -71,7 +71,7 @@ class VocabController < ApplicationController
     if @questions_remaining == 0
       high_score = Score.new
       high_score.user_id = session[:user_id]
-      high_score.score = session[:score]
+      high_score.score = session[:score] / session[:amount_questions].to_f
       high_score.save
       redirect_to vocab_index_path
     end

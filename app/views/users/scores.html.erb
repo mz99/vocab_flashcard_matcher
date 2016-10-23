@@ -2,6 +2,6 @@
 <h2>Your previous scores have been: </h2>
 <ul>
   <% @scores.each do |s| %>
-  <li><%= s.score %>, on <%= @scores.created_at %></li>
+  <li>Score: <%= (s.score * 100).round(2)%> % on <%= s.created_at %></li>
   <% end %>
 </ul>
