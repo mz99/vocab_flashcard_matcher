@@ -1,4 +1,4 @@
-class VocabController < ApplicationController
+class VocabsController < ApplicationController
 
   def index
     @vocabs = Vocab.all.order("word")
@@ -40,7 +40,7 @@ class VocabController < ApplicationController
   def destroy
     @vocab = Vocab.find(params[:id])
     @vocab.destroy
-    redirect_to vocab_index_path
+    redirect_to vocabs_path
   end
 
   def quiz

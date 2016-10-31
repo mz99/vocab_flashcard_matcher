@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   # You can have the root of your site routed with "root"
   #dont use Vocab, use vocab
-   root 'vocab#index'
+   root 'vocabs#index'
 
-   resources :vocab
-   get 'quiz', to: 'vocab#quiz'
-   get 'answer', to: 'vocab#answer'
-   get 'result', to: 'vocab#result'
+   resources :vocabs
+   get 'quiz', to: 'vocabs#quiz'
+   get 'answer', to: 'vocabs#answer'
+   get 'result', to: 'vocabs#result'
 
    resources :users do
      #collection is when there is no user involved
