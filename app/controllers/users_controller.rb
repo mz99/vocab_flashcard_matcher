@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to vocabs_path
+    redirect_to vocab_index_path
   end
 
   private
