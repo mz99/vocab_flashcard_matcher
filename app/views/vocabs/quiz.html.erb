@@ -1,13 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2>Your score is <%= session[:score] %> </h2>
-      <%= link_to 'Back to Index', {:action => 'index'} %> <br>
-    </div>
-    <div class="col-sm-4">
-      <h2>The word is: <%= @question %> <br> </h2>
-
-      <% answers = @four.shuffle %>
+<h2>Your score is <%= session[:score] %> </h2>
+<h3><%= @questions_remaining %> questions left!</h3>
+<%= link_to 'Back to Index', {:action => 'index'} %> <br>
+<h2>The word is: <%= @question %> <br> </h2>
+    <% answers = @four.shuffle %>
       <%= form_tag("answer", method: "get") do %>
         <%= radio_button_tag(:answer, "#{answers.first.id}")%><%= answers.first.definition %><br>
         <%= radio_button_tag(:answer, "#{answers.second.id}")%><%= answers.second.definition %><br>
@@ -16,7 +11,3 @@
         <%= hidden_field_tag :orig,  "#{@four.first.id}" %>
         <%= submit_tag("Submit") %>
       <% end %>
-    </div>
-    <div class="col-sm-4">
-      <h3><%= @questions_remaining %> questions left!</h3>
-    </div>
