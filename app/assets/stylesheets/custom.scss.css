@@ -24,3 +24,7 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+
+td {
+    padding:  2px;
+}
