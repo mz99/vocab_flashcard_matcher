@@ -1,6 +1,5 @@
 <h2>Your score is <%= session[:score] %> </h2>
-<h3><%= @questions_remaining %> questions left!</h3>
-<%= link_to 'Back to Index', {:action => 'index'} %> <br>
+<h2><%= @questions_remaining %> questions left!</h2>
 <h2>The word is: <%= @question %> <br> </h2>
     <% answers = @four.shuffle %>
       <%= form_tag("answer", method: "get") do %>
@@ -11,3 +10,4 @@
         <%= hidden_field_tag :orig,  "#{@four.first.id}" %>
         <%= submit_tag("Submit") %>
       <% end %>
+<%= link_to 'Back to Index', {:action => 'index'} %> <br>
