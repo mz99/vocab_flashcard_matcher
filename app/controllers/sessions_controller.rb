@@ -5,9 +5,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash.now[:danger] = "Your logged in!"
-      log_in(user) #refer to helpers/sessions_helper.rb
-      redirect_to(user) #user_url(user)
+      log_in user #log_in(user), refer to helpers/sessios_helper.rb
+      redirect_to user #user_url(user)
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
@@ -16,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to(vocabs_path)
+    redirect_to vocab_index_path
   end
 end
