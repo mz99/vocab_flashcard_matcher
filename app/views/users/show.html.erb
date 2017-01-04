@@ -3,6 +3,6 @@ Email:<%= @current_user.email %> <br>
 Signed up on: <%= @current_user.created_at %>
 <p><%= link_to 'Edit your profile', edit_user_path(@current_user) %></p>
 <p><%= link_to 'See your high scores', scores_user_path(@current_user) %></p>
-<p><%= link_to 'Go back to index page', vocab_path %></p>
+<p><%= link_to 'Go back to index page', vocabs_path %></p>
 <p><%= link_to 'Sign out of account', logout_path, method: :delete %></p>
 <p><%= link_to 'Delete your profile', user_path(@current_user), method: :delete, data: {confirm: 'Are you sure?'} %></p>
