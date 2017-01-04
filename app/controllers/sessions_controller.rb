@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      log_in user #log_in(user), refer to helpers/sessios_helper.rb. Assign session variable to user.id
-      redirect_to user #user_url(user), goto users#show page
+      @user = user #question: why do I need to pass user to @user in order for login_in(user) to work even when helper module is trickled down in this controller already?
+      log_in @user #log_in(user), refer to helpers/sessions_helper.rb
+      current_user #set @current_user variable in helpers/sessions_helper.rb
+      redirect_to @user #user_url(user), goto users#show page
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'  #goto sessions#new, routed to localhost:3000/login
