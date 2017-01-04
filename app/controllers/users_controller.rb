@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #below is a callback to engage the current_user object
-  before_action :set_user, only: [:show, :scores, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :scores, :edit, :update, :destroy]
 
   def show
   end
@@ -46,9 +46,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:email, :password,:password_confirmation)
   end
 
-  def set_user
-    @user = current_user
-  end
+  #def set_user
+    #@user = current_user
+  #end
 
+  def require_login
+    unless logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to(:controller => 'sessions', :action => 'new')
+    end
+  end
 
 end
