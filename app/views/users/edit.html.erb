@@ -1,19 +1,19 @@
 <h1>Edit your profile: <%= @current_user.name %></h1>
 
-<%= form_for :user, url: user_path(@current_user), method: :patch do |f| %>
+<%= form_for (@current_user) do |c| %>
 
   <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= c.label :name %><br>
+    <%= c.text_field :name %>
   </p>
 
   <p>
-    <%= f.label :email %><br>
-    <%= f.text_area :email %>
+    <%= c.label :email %><br>
+    <%= c.text_area :email %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= c.submit %>
   </p>
 
 <% end %>
