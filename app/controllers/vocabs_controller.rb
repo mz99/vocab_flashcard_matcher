@@ -1,4 +1,5 @@
 class VocabsController < ApplicationController
+  before_action :logged_in?
 
   def index
     @vocabs = Vocab.all.order("word")
