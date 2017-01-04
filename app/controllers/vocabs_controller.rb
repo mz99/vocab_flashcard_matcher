@@ -1,5 +1,5 @@
 class VocabsController < ApplicationController
-  before_action :logged_in?
+  before_action :require_login, except: [:index, :quiz, :answer]
 
   def index
     @vocabs = Vocab.all.order("word")
@@ -100,5 +100,12 @@ class VocabsController < ApplicationController
   private
     def vocab_params
       params.require(:vocab).permit(:word, :definition)
+    end
+
+    def require_login #can I put this in helper module instead of pasteing it here and in other controller?
+      unless logged_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to(:controller => 'sessions', :action => 'new')
+      end
     end
 end

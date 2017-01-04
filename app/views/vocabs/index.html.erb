@@ -1,9 +1,10 @@
 <h1>All German Vocabulary</h1>
 <h4><%= link_to 'Take the Quiz!', quiz_path %> </h4>
-<h4><%= link_to 'New word', new_vocab_path %> </h4>
+
 <% if logged_in? %>
-<p>Welcome back, <%= @current_user.name %>! </p>
-<p>Goto your profile page: <%= link_to 'Profile page', user_path(@current_user.id) %></p>
+<h4>Welcome back, <%= @current_user.name %>! </h4>
+<h4>Goto your profile page: <%= link_to 'Profile page', user_path(@current_user.id) %></h4>
+<h4><%= link_to 'Add new word', new_vocab_path %> </h4>
 <% else %>
 <h4><%= link_to 'Create your account', signup_users_path %> </h4>
 <h4><%= link_to 'Login', login_path %> </h4>
@@ -16,6 +17,7 @@
     <th colspan="3"></th>
   </tr>
 
+<% if logged_in? %>
   <% @vocabs.each do |vocab| %>
     <tr>
       <td><%= vocab.word %></td>
@@ -27,4 +29,13 @@
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
+
+  <% else %>
+  <% @vocabs.each do |vocab| %>
+    <tr>
+      <td><%= vocab.word %></td>
+      <td><%= vocab.definition %></td>
+    </tr>
+  <% end %>
+<% end %>
 </table>

@@ -46,9 +46,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:email, :password,:password_confirmation)
   end
 
-  #def set_user
-    #@user = current_user
-  #end
 
   def require_login
     unless logged_in?
