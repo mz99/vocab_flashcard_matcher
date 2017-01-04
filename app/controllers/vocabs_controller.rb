@@ -1,5 +1,5 @@
 class VocabsController < ApplicationController
-  before_action :require_login, except: [:index, :quiz, :answer]
+  before_action :require_login, except: [:index, :quiz, :answer, :result]
 
   def index
     @vocabs = Vocab.all.order("word")
@@ -45,6 +45,7 @@ class VocabsController < ApplicationController
   end
 
   def quiz
+
     #Initiate score session
     session[:score] ||= 0
     #Initiate session to hold questions already asked
@@ -74,7 +75,7 @@ class VocabsController < ApplicationController
       high_score.user_id = session[:user_id]
       high_score.score = session[:score] / session[:amount_questions].to_f
       high_score.save
-      redirect_to vocab_index_path
+      redirect_to result_path
     end
 
   end
