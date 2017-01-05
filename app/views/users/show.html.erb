@@ -1,6 +1,6 @@
-Name: <%= @current_user.name %> <br>
-Email:<%= @current_user.email %> <br>
-Signed up on: <%= @current_user.created_at %>
+<h2> Name: <%= @current_user.name %> </h2>
+<h2> Email: <%= @current_user.email %> </h2>
+<h2> Signed up on: <%= @current_user.created_at %> </h2>
 <p><%= link_to 'Edit your profile', edit_user_path(@current_user) %></p>
 <p><%= link_to 'See your high scores', scores_user_path(@current_user) %></p>
 <p><%= link_to 'Go back to index page', vocabs_path %></p>

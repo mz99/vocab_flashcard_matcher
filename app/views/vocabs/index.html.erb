@@ -2,9 +2,9 @@
 <h4><%= link_to 'Take the Quiz!', quiz_path %> </h4>
 
 <% if logged_in? %>
+<h4><%= link_to 'Add new word', new_vocab_path %> </h4>
 <h4>Welcome back, <%= @current_user.name %>! </h4>
 <h4>Goto your profile page: <%= link_to 'Profile page', user_path(@current_user.id) %></h4>
-<h4><%= link_to 'Add new word', new_vocab_path %> </h4>
 <% else %>
 <h4><%= link_to 'Create your account', signup_users_path %> </h4>
 <h4><%= link_to 'Login', login_path %> </h4>

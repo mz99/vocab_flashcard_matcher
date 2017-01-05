@@ -1,6 +1,6 @@
+<h2>The word is: <%= @question %> <br> </h2>
 <h2>Your score is <%= session[:score] %> </h2>
 <h2><%= @questions_remaining %> questions left!</h2>
-<h2>The word is: <%= @question %> <br> </h2>
     <% answers = @four.shuffle %>
       <%= form_tag("answer", method: "get") do %>
         <%= radio_button_tag(:answer, "#{answers.first.id}")%><%= answers.first.definition %><br>
