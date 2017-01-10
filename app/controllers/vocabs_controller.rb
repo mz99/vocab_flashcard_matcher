@@ -106,7 +106,7 @@ class VocabsController < ApplicationController
     def require_login #can I put this in helper module instead of pasteing it here and in other controller?
       unless logged_in?
         flash[:error] = "You must be logged in to access this section"
-        redirect_to(:controller => 'sessions', :action => 'new')
+        redirect_to sessions_new_path
       end
     end
 end
