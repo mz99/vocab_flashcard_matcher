@@ -13,17 +13,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-  end
-
-  def update
-    if @current_user.update(user_params)
-      redirect_to @current_user
-    else
-      render 'edit'
-    end
-  end
-
   def create
     @user = User.new(user_params)
      if @user.save
@@ -32,6 +21,17 @@ class UsersController < ApplicationController
        redirect_to @user
     else
       render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @current_user.update(user_params)
+      redirect_to @current_user
+    else
+      render 'edit'
     end
   end
 
