@@ -15,10 +15,6 @@ class VocabsController < ApplicationController
     @vocab = Vocab.new
   end
 
-  def edit
-    @vocab = Vocab.find(params[:id])
-  end
-
   def create
     @vocab = Vocab.new(vocab_params)
     if @vocab.save
@@ -27,6 +23,10 @@ class VocabsController < ApplicationController
       flash.now[:notice] = "Word or definition can't be blank!"
       render 'new'
     end
+  end
+
+  def edit
+    @vocab = Vocab.find(params[:id])
   end
 
   def update

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  #below is a callback to engage the current_user object
   before_action :require_login, only: [:show, :scores, :edit, :update, :destroy]
 
   def show
