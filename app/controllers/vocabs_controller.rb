@@ -45,13 +45,31 @@ class VocabsController < ApplicationController
   end
 
   def quiz
+    initiate_score
 
+  end
+
+  def answer
+    #Keep score and question id's already asked
+    if params[:answer] == params[:orig]
+      session[:score] += 1
+      session[:already_asked] << params[:answer].to_i
+      flash[:notice] = "You got it right!"
+      redirect_to quiz_path
+    else
+      session[:already_asked] << params[:orig].to_i
+      flash[:notice] = "Sorry, wrong answer!"
+      redirect_to quiz_path
+    end
+  end
+
+  def initiate_score
     #Initiate score session
     session[:score] ||= 0
     #Initiate session to hold questions already asked
     session[:already_asked] ||= []
     #Total score
-    session[:amount_questions] = Vocab.all.length
+    session[:amount_questions] = Vocab.all.length - 4
 
     #Get list of words that hasn't been asked before
     @left_words = Vocab.all.where.not(id: session[:already_asked])
@@ -77,24 +95,6 @@ class VocabsController < ApplicationController
       high_score.save
       redirect_to result_path
     end
-
-  end
-
-  def answer
-    #Keep score and question id's already asked
-    if params[:answer] == params[:orig]
-      session[:score] += 1
-      session[:already_asked] << params[:answer].to_i
-      flash[:notice] = "You got it right!"
-      redirect_to quiz_path
-    else
-      session[:already_asked] << params[:orig].to_i
-      flash[:notice] = "Sorry, wrong answer!"
-      redirect_to quiz_path
-    end
-  end
-
-  def result
   end
 
 
