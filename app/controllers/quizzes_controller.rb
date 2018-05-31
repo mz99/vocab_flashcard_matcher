@@ -2,39 +2,36 @@ class QuizzesController < ApplicationController
 
   def quiz
     initiate_score
+    remaining_words
+
+    if @questions_remaining == 0  
+      save_score_to_db
+      redirect_to result_path
+    end
   end
 
-  def answer
-    #Keep score and question id's already asked
+  def answer #Keep score and questions already asked
     if params[:answer] == params[:orig]
-      session[:score] += 1
-      session[:already_asked] << params[:answer].to_i
-      flash[:notice] = "You got it right!"
+      right_answer
       redirect_to quiz_path
     else
-      session[:already_asked] << params[:orig].to_i
-      flash[:notice] = "Sorry, wrong answer!"
+      wrong_answer
       redirect_to quiz_path
     end
   end
 
   private
 
-  def require_login #can I put this in helper module instead of pasteing it here and in other controller?
-    unless logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to sessions_new_path
-    end
-  end
-
-  def initiate_score
+  def initiate_score # Needs to be refactored into multiple methods below
     #Initiate score session
     session[:score] ||= 0
     #Initiate session to hold questions already asked
     session[:already_asked] ||= []
     #Total score
     session[:amount_questions] = Vocab.all.length - 4
+  end
 
+  def remaining_words
     #Get list of words that hasn't been asked before
     @remaining_words = Vocab.all.where.not(id: session[:already_asked])
 
@@ -50,14 +47,23 @@ class QuizzesController < ApplicationController
     else
       redirect_to result_path
     end
+  end
 
-    #save score to user database if all questions done and logged in
-    if @questions_remaining == 0
-      high_score = Score.new
-      high_score.user_id = session[:user_id]
-      high_score.score = session[:score] / session[:amount_questions].to_f
-      high_score.save
-      redirect_to result_path
-    end
+  def save_score_to_db
+    high_score = Score.new
+    high_score.user_id = session[:user_id]
+    high_score.score = session[:score] / session[:amount_questions].to_f
+    high_score.save
+  end
+
+  def right_answer
+    session[:score] += 1
+    session[:already_asked] << params[:answer].to_i
+    flash[:notice] = "You got it right!"
+  end
+
+  def wrong_answer
+    session[:already_asked] << params[:orig].to_i
+    flash[:notice] = "Sorry, wrong answer!"
   end
 end
