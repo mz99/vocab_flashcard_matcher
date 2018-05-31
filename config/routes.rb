@@ -6,9 +6,17 @@ Rails.application.routes.draw do
    root 'vocabs#index'
 
    resources :vocabs
-   get 'quiz', to: 'vocabs#quiz'
-   get 'answer', to: 'vocabs#answer'
-   get 'result', to: 'vocabs#result'
+   # get 'quiz', to: 'vocabs#quiz'
+   # get 'answer', to: 'vocabs#answer'
+   # get 'result', to: 'vocabs#result'
+
+
+
+   get 'quiz', to: 'quizzes#quiz'
+   get 'answer', to: 'quizzes#answer'
+   get 'result', to: 'quizzes#result'
+
+
 
    resources :users do
      #collection is when there is no user involved

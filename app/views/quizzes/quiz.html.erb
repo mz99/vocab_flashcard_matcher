@@ -1,13 +1,13 @@
 <h2>The word is: <%= @question %> <br> </h2>
 <h2>Your score is <%= session[:score] %> </h2>
 <h2><%= @questions_remaining %> questions left!</h2>
-    <% answers = @four.shuffle %>
+    <% answers = @question_words.shuffle %>
       <%= form_tag("answer", method: "get") do %>
         <%= radio_button_tag(:answer, "#{answers.first.id}")%><%= answers.first.definition %><br>
         <%= radio_button_tag(:answer, "#{answers.second.id}")%><%= answers.second.definition %><br>
         <%= radio_button_tag(:answer, "#{answers.third.id}")%><%= answers.third.definition %><br>
         <%= radio_button_tag(:answer, "#{answers.fourth.id}")%><%= answers.fourth.definition %> <br>
-        <%= hidden_field_tag :orig,  "#{@four.first.id}" %>
+        <%= hidden_field_tag :orig,  "#{@question_words.first.id}" %>
         <%= submit_tag("Submit") %>
       <% end %>
-<%= link_to 'Back to Index', {:action => 'index'} %> <br>
+<%= link_to 'Back to Index', root_path %> <br>
