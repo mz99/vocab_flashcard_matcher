@@ -2,14 +2,19 @@
 
 # This controller runs the vocab quiz
 class QuizzesController < ApplicationController
+  def start_quiz
+    clear_session
+    redirect_to action: "quiz"
+  end
+
   def quiz
+    initiate_quiz
+    remaining_words
+
     if @questions_remaining.zero?
       save_score_to_db
       redirect_to result_path
     end
-
-    initiate_quiz
-    remaining_words
   end
 
   def answer
@@ -58,5 +63,10 @@ class QuizzesController < ApplicationController
   def wrong_answer
     session[:vocab_already_asked] << params[:orig].to_i
     flash[:notice] = 'Sorry, wrong answer!'
+  end
+
+  def clear_session
+    session[:score] = 0
+    session[:vocab_already_asked] = []
   end
 end

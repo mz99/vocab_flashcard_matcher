@@ -6,8 +6,9 @@ Rails.application.routes.draw do
    root 'vocabs#index'
 
    resources :vocabs
-  
+
    get 'quiz', to: 'quizzes#quiz'
+   get 'start_quiz', to: 'quizzes#start_quiz'
    get 'answer', to: 'quizzes#answer'
    get 'result', to: 'quizzes#result'
 
