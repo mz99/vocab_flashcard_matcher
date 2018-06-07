@@ -3,25 +3,28 @@ require 'spec_helper'
 describe User do
   it "is valid with a name, password and email" do
     user = User.new(
-      name: "Mike",
+      name: "Jack",
       password: "123",
-      email: "ubik00@yahoo.com")
+      email: "tevako@yahoo.com")
     expect(user).to be_valid
   end
   it "is invalid without a name" do
-    expect(User.new(name: nil)).to have(1).errors_on(:name)
+    no_name = User.new(name: nil)
+    expect(no_name.valid?).to be_falsey
   end
   it "is invalid without a password" do
-    expect(User.new(password: nil)).to have(1).errors_on(:password)
+    no_password = User.new(password: nil)
+    expect(no_password.valid?).to be_falsey
   end
   it "is invalid without an email address" do
-    expect(User.new(email: nil)).to have(1).errors_on(:email)
+    no_email = User.new(email: nil)
+    expect(no_email.valid?).to be_falsey
   end
   it "is invalid with a duplicate email address" do
     User.create(
-      name: "Mike", password:"123", email: "ubik00@yahoo.com")
+      name: "Jack", password:"123", email: "tevako@yahoo.com")
     user = User.new(
-      name: "Jack", password:"435", email: "ubik00@yahoo.com")
-    expect(user).to have(1).errors_on(:email)
+      name: "Jack", password:"435", email: "tevako@yahoo.com")
+    expect(user.valid?).to be_falsey
   end
 end
