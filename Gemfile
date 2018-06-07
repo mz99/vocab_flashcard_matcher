@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'puma'
 # Use pry-bug debugger
 gem 'pry-byebug'
+# Use Rubocup
+gem 'rubocop'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -46,16 +48,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '~> 2.14.0'
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails'
 end
 
 group :test do
   gem 'faker', '~> 1.1.2'
-  gem 'capybara', '~> 2.1.0'
-  gem 'database_cleaner', '~> 1.0.1'
+  gem 'capybara', '~> 2.8.0'
   gem 'launchy', '~> 2.3.0'
   gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'database_cleaner'
 end
 
 group :development do
