@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @current_user.destroy
     redirect_to vocabs_path
   end
 
@@ -45,12 +45,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name,:email, :password,:password_confirmation)
   end
 
-
   def require_login
     unless logged_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to sessions_new_path
     end
   end
-
 end
