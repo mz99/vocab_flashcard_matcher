@@ -2,7 +2,7 @@
 
 # This controller runs the vocab quiz
 class QuizzesController < ApplicationController
-  def start_quiz
+  def reset_quiz
     clear_session
     redirect_to action: "quiz"
   end
@@ -39,12 +39,9 @@ class QuizzesController < ApplicationController
     @remaining_words = Vocab.all.where.not(id: session[:vocab_already_asked])
     @questions_remaining = @remaining_words.length - 4
     @quiz_words = @remaining_words.shuffle.take(4)
+    @question = @quiz_words.first.word
 
-    if @remaining_words.length >= 4
-      @question = @quiz_words.first.word
-    else
-      redirect_to result_path
-    end
+    return if @remaining_words.length < 4
   end
 
   def save_score_to_db
