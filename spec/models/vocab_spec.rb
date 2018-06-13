@@ -3,15 +3,16 @@ require 'spec_helper'
 describe Vocab do
   it "is valid with a word and definition" do
     vocab = Vocab.new(
-      word: "Achtung",
-      definition: "Be careful")
+      word: "Fesnter",
+      definition: "Window")
     expect(vocab).to be_valid
   end
   it "is invalid without a word" do
-    expect(Vocab.new(word: nil)).to have(1).errors_on(:word)
+    no_word = Vocab.new(word: nil)
+    expect(no_word.valid?).to be_falsey
   end
   it "is invalid without a definition" do
-    expect(Vocab.new(definition: nil)).to have(1).errors_on(:definition)
+    no_definition = Vocab.new(definition: nil)
+    expect(no_definition.valid?).to be_falsey
   end
-
 end

@@ -22,6 +22,10 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
 
+  config.before(:suite) do
+    Rails.application.load_seed # loading seeds
+  end
+
   config.include FormHelpers, :type => :feature
 
 

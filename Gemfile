@@ -50,6 +50,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
+  gem 'spring-commands-rspec'
 end
 
 group :test do

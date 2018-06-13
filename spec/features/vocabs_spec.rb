@@ -20,7 +20,6 @@ feature 'Vocab controller'  do
     fill_in('Definition', with: 'Exit')
     click_on('Update Vocab')
     page.has_content?('Definition: Exit')
-    save_and_open_page
   end
 
   scenario "user shows existing word successfully" do
