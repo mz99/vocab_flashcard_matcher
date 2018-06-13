@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    resources :vocabs
 
    get 'quiz', to: 'quizzes#quiz'
-   get 'start_quiz', to: 'quizzes#start_quiz'
+   get 'start_quiz', to: 'quizzes#reset_quiz'
    get 'answer', to: 'quizzes#answer'
    get 'result', to: 'quizzes#result'
 
